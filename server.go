@@ -31,17 +31,23 @@ func (s *server) newClient(conn net.Conn) {
 }
 
 func (s *server) run() {
+	log.Print("listenting for server commands")
 	for cmd := range s.commands {
 		switch cmd.id {
 		case CMD_NICK:
+			log.Print("server received /nick command")
 			s.nick(cmd)
 		case CMD_JOIN:
+			log.Print("server received /join command")
 			s.join(cmd)
 		case CMD_ROOMS:
+			log.Print("server received /rooms command")
 			s.listRooms(cmd)
 		case CMD_MSG:
+			log.Print("server received /msg command")
 			s.msg(cmd)
 		case CMD_QUIT:
+			log.Print("server received /quit command")
 			s.quit(cmd)
 		}
 	}
@@ -123,6 +129,7 @@ func (s *server) quitCurrentRoom(c *client) {
 }
 
 func newServer() *server {
+	log.Print("initializing new server instance")
 	return &server{
 		rooms:    make(map[string]*room),
 		commands: make(chan command),
