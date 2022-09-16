@@ -27,6 +27,7 @@ func (c *client) readInput() {
 	for {
 		msg, err := bufio.NewReader(c.conn).ReadString('\n')
 		if err != nil {
+			log.Printf("error reading client message: %s", err.Error())
 			return
 		}
 
