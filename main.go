@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-var DEFAULT_PORT = "8080"
+var DEFAULT_PORT = "8888"
 
 func main() {
 	port := os.Getenv("PORT")
